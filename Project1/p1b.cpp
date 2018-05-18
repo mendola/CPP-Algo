@@ -4,7 +4,7 @@
 #include <limits.h>
 #include "d_except.h"
 #include <fstream>
-
+#include <time.h>
 #include <boost/graph/adjacency_list.hpp>
 
 #define LargeValue 99999999
@@ -81,12 +81,11 @@ void printSolution(Graph &g, int numConflicts){
 }
 
 // Using a base-[numColors] counter to represent coloring, increment counter and adjust coloring.
-int changeColoringCounterMethod(Graph &g, int numColors){
+int changeColoringCounterMethod(Graph &g, int numColors, vector<int> &initalColors){
     pair<Graph::vertex_iterator, Graph::vertex_iterator> vItrRange = vertices(g);
     Graph::vertex_iterator vItr= vItrRange.first;
     unsigned int carry = 1;
-    int ret = 0;
-
+    int ret = 1;
     while (vItr != vItrRange.second && carry != 0) {
         int currWeight = g[*vItr].weight;
         if(currWeight == numColors - 1){
@@ -99,18 +98,21 @@ int changeColoringCounterMethod(Graph &g, int numColors){
     }
 
     // Return 1 if the last coloring has been tested
-    if(vItr == vItrRange.second && carry != 0){
-        ret = 1;
+    int i = 0;
+    for (Graph::vertex_iterator vItr= vItrRange.first; vItr != vItrRange.second; ++vItr){
+        if(g[*vItr].weight != initalColors[i]){
+            ret = 0;
+            break;
+        }
+        i++;
     }
     return ret;
-
 }
 
 int countConflicts(Graph &g){
     pair<Graph::edge_iterator, Graph::edge_iterator> eItrRange = edges(g);
     
     int conflictCount = 0;
-
     for(Graph::edge_iterator eItr= eItrRange.first; eItr != eItrRange.second; ++eItr){
         Graph::edge_descriptor currEdge = *eItr;
         Graph::vertex_descriptor sourceVertex = source(currEdge,g);
@@ -124,6 +126,20 @@ int countConflicts(Graph &g){
     return conflictCount;
 }
 
+vector<int>  randWeightInitialization(Graph &g, int numColors){
+    srand(time(NULL));
+    vector<int> ret(num_vertices(g));
+    pair<Graph::vertex_iterator, Graph::vertex_iterator> vItrRange = vertices(g);
+    int i = 0;
+    for (Graph::vertex_iterator vItr= vItrRange.first; vItr != vItrRange.second; ++vItr) {
+        int randInt = rand() % numColors;
+        g[*vItr].weight = randInt;
+        ret[i] = randInt;
+        i++;
+    }
+    return ret;
+}
+
 int exhaustiveColoring(Graph &g, int numColors, int t){
     // Get start time
     clock_t startTime = clock();
@@ -133,8 +149,9 @@ int exhaustiveColoring(Graph &g, int numColors, int t){
     vector<int> bestColoring(numVertices,0); // Will store the best coloring as it's updated
 
     // Initialize all weights (colors) to 0;
-    setNodeWeights(g, 0);
+    //setNodeWeights(g, 0);
 
+    vector<int> initialColoring = randWeightInitialization(g, numColors);
     // Search Loop. Break if timeout occurs or all colorings have been tried
     int iter = 0;
     while(1){
@@ -145,9 +162,8 @@ int exhaustiveColoring(Graph &g, int numColors, int t){
             cout<<"Timed out. time = "<<now-startTime<<endl;
             break;
         }
-
         // Update Coloring 
-        if(changeColoringCounterMethod(g,numColors) == 1){
+        if(changeColoringCounterMethod(g,numColors, initialColoring) == 1){
             cout<<"Tested all combinations"<<endl;
             break;
         }
@@ -170,7 +186,6 @@ int exhaustiveColoring(Graph &g, int numColors, int t){
             break;
         }
     }
-
     // Color with Best Coloring
     int i = 0;
     pair<Graph::vertex_iterator, Graph::vertex_iterator> vItrRange = vertices(g);

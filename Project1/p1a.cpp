@@ -119,7 +119,7 @@ int main()
    {
       cout << "Reading knapsack instance" << endl;
       knapsack k(fin);
-
+      k.sortItemsByCVRatio(); // Sort the items by cost/value ratio
       exhaustiveKnapsack(k, 600);
 
       cout << endl << "Best solution" << endl;
