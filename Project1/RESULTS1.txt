@@ -1,3 +1,5 @@
+By: Alessandro Mendola and Tristan Sweeney
+
 Problem 1:
 Implementing the most naive algorithm, we took subsets of the knapsack and evaluated each, and returned the maximum value set that met the cost threshold. 
 This solution is valid for all instance sizes, but naively iterating through each possible subset is not a time-efficent approach. For large instances it's 

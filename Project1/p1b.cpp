@@ -80,7 +80,7 @@ void printSolution(Graph &g, int numConflicts){
     }
 }
 
-// Using a base-[numColors] counter to represent coloring, increment counter and adjust coloring.
+// Using a base-[numColors] counter to represent coloring, increment counter and adjust coloring. This was our first counter method
 int changeColoringCounterMethod(Graph &g, int numColors, vector<int> &initalColors){
     pair<Graph::vertex_iterator, Graph::vertex_iterator> vItrRange = vertices(g);
     Graph::vertex_iterator vItr= vItrRange.first;
@@ -109,6 +109,7 @@ int changeColoringCounterMethod(Graph &g, int numColors, vector<int> &initalColo
     return ret;
 }
 
+// Count the number of coloring conflicts in the given graph
 int countConflicts(Graph &g){
     pair<Graph::edge_iterator, Graph::edge_iterator> eItrRange = edges(g);
     
@@ -126,6 +127,7 @@ int countConflicts(Graph &g){
     return conflictCount;
 }
 
+// Randomly assign colors to all nodes in the graph.
 vector<int>  randWeightInitialization(Graph &g, int numColors){
     srand(time(NULL));
     vector<int> ret(num_vertices(g));
@@ -140,6 +142,7 @@ vector<int>  randWeightInitialization(Graph &g, int numColors){
     return ret;
 }
 
+// Tests all possible colorings  given graph g and given number of colors. Algorithm terminates after t seconds if all combinations haven't been tested.
 int exhaustiveColoring(Graph &g, int numColors, int t){
     // Get start time
     clock_t startTime = clock();
@@ -151,7 +154,10 @@ int exhaustiveColoring(Graph &g, int numColors, int t){
     // Initialize all weights (colors) to 0;
     //setNodeWeights(g, 0);
 
+    // Randomly initialize weights (colors)
     vector<int> initialColoring = randWeightInitialization(g, numColors);
+
+
     // Search Loop. Break if timeout occurs or all colorings have been tried
     int iter = 0;
     while(1){

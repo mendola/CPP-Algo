@@ -1,5 +1,6 @@
 // Knapsack class
 // Version f08.1
+#include <algorithm>
 
 class knapsack
 {
@@ -16,6 +17,7 @@ class knapsack
       void select(int);
       void unSelect(int);
       bool isSelected(int) const;
+      void sortItemsByCVRatio();
 
    private:
       int numObjects;
@@ -208,3 +210,21 @@ bool knapsack::isSelected(int i) const
    return selected[i];
 }
 
+
+static bool compareCVRatio(const pair<int,int> &a, const pair<int,int> &b){
+      return( ((float)a.first/(float)a.second) < ((float)b.first/(float)b.second) );
+}
+
+
+void knapsack::sortItemsByCVRatio(){
+
+      vector<pair<int,int> > pairs(numObjects);
+      for(int i = 0; i < numObjects; i++){
+            pairs[i] = make_pair(cost[i],value[i]);
+      }
+      sort(pairs.begin(), pairs.end(), &compareCVRatio);
+      for(int i = 0; i < numObjects; i++){
+            cost[i] = pairs[i].first;
+            value[i] = pairs[i].second;
+      }
+}

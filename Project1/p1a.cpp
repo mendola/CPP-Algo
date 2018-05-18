@@ -18,7 +18,7 @@ using namespace std;
 #include "knapsack.h"
 
 
-// I
+// Treating the list of objects included/not-included as a binary number, increment the binary representation
 int incrementKnapsack(knapsack &k, unsigned int numObjects){
   int idx = numObjects - 1;
   unsigned int carry = 1;
