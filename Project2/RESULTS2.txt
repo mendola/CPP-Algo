@@ -1,0 +1,23 @@
+By: Alessandro Mendola and Tristan Sweeney
+
+Problem 1:
+Implementing the most naive algorithm, we took subsets of the knapsack and evaluated each, and returned the maximum value set that met the cost threshold. 
+This solution is valid for all instance sizes, but naively iterating through each possible subset is not a time-efficent approach. For large instances it's 
+not possible to test every subset in under 10 minutes, and our approach traversed the power-set of the knapsack starting from the empty-set, never reaching 
+a potential set which included enough items to be near the cost threshold before the time elapsed. To improve upon this, we moved to sort the list by 
+value-per-weight and search larger sets before smaller sets, to minimize the potential of not 'filling' the knapsack.
+
+Results: In the 10-minute runtime, our exhaustive algorithm only tested all cases for knapsack instaces sizes up to 28. For instaces size 32 and greater, 
+the portion of search space our algorithm tested decreased exponentially with instance size. Thus we would expect that our variance from the optimal total value
+would also increase with knapsack size above 32, though we can't verify this without knowing the optimal total values.
+
+Problem 2:
+Again, we implemented the most naive algorithm for coloring. If the coloring problem has n nodes and k colors, we represent the vector of n-nodes as a base-k 
+number, and increment it by one for each coloring to test. Thus each node takes on k values (colors) before rolling over back to zero and incrementing the color 
+of the next node. The problem with this naive approach is that for large instances it takes a lot of time before most of the nodes change color at all. To try to
+improve performance, we started the base-k graph color representation with a random initialization, and then increment the coloring representation until it rolls
+over to [0, 0, ... 0, 0], and continues incrementing until terminating when it reaches the inital state.
+
+Results: We only found a perfect coloring for the 4-color case with 12 nodes, and in the 10-minute runtime for each instance, the exhastive algorithm only tested 
+all combinations for the two 12-node instances. For all other instances, the algorithm timed out before all combinations were tested. Given that the size of the
+search space increases exponentially with the instance size, it is unsurprising that our results show the number of conflicts increasing with instance size as well.

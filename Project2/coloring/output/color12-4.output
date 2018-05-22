@@ -1,0 +1,21 @@
+Enter filename
+Reading graph
+4 Colors.
+Num nodes: 12
+Num edges: 21
+
+Search was stopped. 0-conflict solution found.
+Best number of conflicts found: 0
+Number of Conflicts: 0
+Node 0 color: 0
+Node 1 color: 1
+Node 2 color: 3
+Node 3 color: 2
+Node 4 color: 2
+Node 5 color: 1
+Node 6 color: 0
+Node 7 color: 0
+Node 8 color: 0
+Node 9 color: 3
+Node 10 color: 0
+Node 11 color: 2

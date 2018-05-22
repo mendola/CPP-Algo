@@ -1,0 +1,21 @@
+Enter filename
+Reading graph
+3 Colors.
+Num nodes: 12
+Num edges: 21
+
+Tested all combinations
+Best number of conflicts found: 1
+Number of Conflicts: 1
+Node 0 color: 1
+Node 1 color: 0
+Node 2 color: 2
+Node 3 color: 0
+Node 4 color: 2
+Node 5 color: 1
+Node 6 color: 1
+Node 7 color: 1
+Node 8 color: 0
+Node 9 color: 2
+Node 10 color: 1
+Node 11 color: 0

@@ -1,0 +1,23 @@
+Enter filename
+Reading knapsack instance
+Number of objects: 16
+Cost Limit: 3839
+Tested all combinations.
+
+Best solution
+------------------------------------------------
+Total value: 4939
+Total cost: 3839
+
+0  101 1
+1  122 22
+2  219 119
+3  222 122
+4  287 187
+5  447 347
+7  586 486
+8  622 522
+9  713 613
+10  790 690
+12  830 730
+
