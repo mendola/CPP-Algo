@@ -1,4 +1,4 @@
-PROJ=p1b
+PROJ=coloring
 
 all: $(PROJ).cpp
 	g++ $(PROJ).cpp -o $(PROJ)
