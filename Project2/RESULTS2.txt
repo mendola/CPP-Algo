@@ -1,0 +1,32 @@
+Problem 1 - Greedy Knapsack:
+
+TABULATED RESULTS FOR TOTAL VALUE:   (* = algorithm timed out before testing all combinations)
+#items    Exhaustive          Greedy
+8         2192                1986  
+12        2978                2978
+16        4939                4576
+20        6258                6125
+28        9284                8897
+32        9869*               9678
+48        13117*              14141
+64        17674*              19640
+128       28970*              40321
+256       28970*              80043
+512       311203*             1681065
+1024      315056*             3299177
+
+In order to find a solution to the knapsack problem without exhaustively testing all possible combinations of items, we implemented a greedy algorithm. In order to speed
+up the algorithm on large instances, our algorithm uses the heuristic of always picking the remaining item with maximum ratio of value to cost that still fits in the 
+knapsack. Our results show that this algorithm is NOT optimal. In the previous project, we completed an exhaustive search for knapsack sizes up through 28 items, thus we
+do know the optimal solutions for these 5 instances. Of these 5 instances, our greedy algorithm only found the optimal solution for sizes 12, and the exhaustive algorithm
+even beat the greedy algorithm for the first instance for which it timed out. However, for instances larger than 32 items, the greedy algorithm vastly outperformed the 
+exhaustive search, with the margin between the two getting orders of magnitude bigger as the instance size increased. Furthermore, the greedy algorithm ran on all 12 instances
+in less than a second, while the exhaustive algorithm took 10 minutes just for one of the instances larger than 28 items. 
+
+While the greedy algorithm is not optimal for this problem, it's clear that using a greedy algorithm is still better than attempting an exhastive search for large instances.
+
+
+
+
+
+

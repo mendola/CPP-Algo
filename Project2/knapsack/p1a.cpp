@@ -16,16 +16,15 @@ using namespace std;
 #include "knapsack.h"
 
 
-void greedyKnapsack(knapsack &k, int t){
-  clock_t startTime = clock();
+void greedyKnapsack(knapsack &k){
   int totalCost = 0;
   int i = 0;
-  bool run = true;
   int costLimit = k.getCostLimit();
+  cout<<"Cost Limit: "<< costLimit << endl;
   int numObjects = k.getNumObjects();
   
   // Loop until bag is full or time runs out
-  while(run){
+  while( totalCost <= costLimit && i < numObjects){
     // If next item in list is cheap enough, add it
     if(k.getCost(i) + totalCost <= costLimit){
       k.select(i);
@@ -34,23 +33,6 @@ void greedyKnapsack(knapsack &k, int t){
 
     // Move on to next item in sorted list
     i++;
-
-    // Stop if cost limit is reached
-    if(totalCost >= costLimit){
-      run = false;
-    }
-
-    // Stop if all items have been exhausted
-    if(i >= numObjects){
-      run = false;
-    }
-
-    // Stop if time is out
-    clock_t now = clock();
-    if( (float)(now-startTime) / CLOCKS_PER_SEC > (float)t ){
-      cout<<"Timed out. time = "<<now-startTime<<endl;
-      run = false;
-    }
   }
 }
 
@@ -73,7 +55,7 @@ int main(int argc, char* argv[])
         knapsack k(fin);
         k.sortItemsByCVRatio(); // Sort the items by cost/value ratio
         // k.sortItemsByValue(); // (Possible Alternative, seems more 'greedy') Sort the idems by value
-        greedyKnapsack(k, 600);
+        greedyKnapsack(k);
 
         k.printSolution();
       
