@@ -1,18 +1,16 @@
-Enter filename
-Reading knapsack instance
-Number of objects: 32
 Cost Limit: 7969
-Timed out. time = 600000033
-
-Best solution
 ------------------------------------------------
-Total value: 9869
-Total cost: 7969
+Total value: 9678
+Total cost: 7478
 
+0  101 1
+1  122 22
+2  219 119
 3  222 122
 4  223 123
 5  287 187
 6  332 232
+7  376 276
 8  425 325
 9  431 331
 10  447 347
@@ -21,11 +19,10 @@ Total cost: 7969
 13  467 367
 14  507 407
 15  563 463
+16  586 486
 17  622 522
 18  654 554
 19  689 589
 20  713 613
 21  775 675
-22  790 690
-23  805 705
 
