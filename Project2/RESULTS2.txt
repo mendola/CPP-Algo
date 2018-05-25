@@ -25,8 +25,20 @@ in less than a second, while the exhaustive algorithm took 10 minutes just for o
 
 While the greedy algorithm is not optimal for this problem, it's clear that using a greedy algorithm is still better than attempting an exhastive search for large instances.
 
+# Coloring
+nverts-color exhaustive greedy
+12-3         1          1
+12-4         0          0
+24-4         4          1
+24-5         4          0
+48-5         27         4
+48-6         33         0
+96-6         109        5
+96-7         71         0
+192-6        382        34
+192-7        332        5
+192-8        274        0
 
+Our greedy coloring traverses the vertices of the graph by degree, starting from the highest degree vertex. It assigns the lowest available color to the vertex, or the color 0 if the vertex has no available colors. It is clear that a greedy algorithm out-performs an exhaustive algorithm, as it runs in O(nlog(n)) time (sort by vertex degree, traverse sorted list). While an exhaustive algorithm is guarenteed to produce the optimal result, a tractable (but not optimal) algorithm will produce a much better result given some time constraints.
 
-
-
-
+ 
