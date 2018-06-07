@@ -1,0 +1,44 @@
+Problem 1 - Greedy Knapsack:
+
+TABULATED RESULTS FOR TOTAL VALUE:   (* = algorithm timed out before testing all combinations)
+#items    Exhaustive          Greedy      ILP
+8         2192                1986  
+12        2978                2978
+16        4939                4576
+20        6258                6125
+28        9284                8897
+32        9869*               9678
+48        13117*              14141
+64        17674*              19640
+128       28970*              40321
+256       28970*              80043
+512       311203*             1681065
+1024      315056*             3299177
+
+# Coloring Results
+#vertices-color exhaustive greedy     ILP
+12-3            1          1          1
+12-4            0          0          0
+24-4            4          1          1
+24-5            4          0          0 
+48-5            27         4          1
+48-6            33         0          0
+96-6            109        5          1
+96-7            71         0          0
+192-6           382        34         4
+192-7           332        5          1 
+192-8           274        0          0
+
+To implement linear constraints for the coloring problem, we used two variable matrices. With a given instance with N nodes and K colors, the first variable is a NxK
+matrix of binary values indicating whether each node is colored by each color index or not. In order to make sure each node is only colored one color, we have a constraint
+such that the sum over each node's row is 1.
+The second variable is a NxK integer matrix which indicates how many conflicts exist for each node at each color. The only nonzero values in this matrix should be in the 
+same position as a 1 in the color matrix.
+In order to set the conflict matrix correctly, we constrain each value in the conflict to be >= 0, and greater than the sum of dot products of the node's row in the edge matrix
+by each color's column in the coloring matrix. In order to not count a node's neigbors sharing a color that isn't the node's own color, the inequality we use to set the conflict matrix
+has an additional term which subtracts a large number times (1 - the current node's color matrix value at the current color index). As a result, if the node being assigned a
+conflict value is not colored with the current color being tested, the constraint becomes    0<= conflict[node,color] >= (the number of the node's neighbors which have this color) - 
+a very large value. Since we're minimizing the total conflicts, this allows the solver to set conflict[node,color] to zero.
+
+Our results show that ILP gives better results for the coloring problem than for either exhaustive search or greedy algorithm. Though the solver failed to find an optimal solution in 
+the time constraint for most of the instances, the results are still better than either other algorithm.
