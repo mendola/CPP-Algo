@@ -8,14 +8,16 @@ TABULATED RESULTS FOR TOTAL VALUE:   (* = algorithm timed out before testing all
 20        6258                6125        6258        6258
 28        9284                8897        9284        9284
 32        9869*               9678        10169       10169
-48        13117*              14141       14519       13619
-64        17674*              19640       20074       17874
-128       28970*              40321       40718       35420
-256       28970*              80043       80605       69805
-512       311203*             1681065     1687950     1484608
-1024      315056*             3299177     3302540     2879850
+48        13117*              14141       14519       14519
+64        17674*              19640       20074       20074
+128       28970*              40321       40718       40639
+256       28970*              80043       80605       80215
+512       311203*             1681065     1687950     1681853
+1024      315056*             3299177     3302540     3299578
 
-Our results for branch and bound were actually somewhat worse than for greedy and ILP algorithms, but only 
-for large instances where a globally optimal solution couldn't be found in 10 minutes. It's possible that
-we can improve our results by changing the way we enqueue subproblems to expand. In our current approach, we 
-always expand the subproblem with the largest optimistic bound.
+Our results for branch and bound were about as good as ILP, and slightly better than the greedy algorithm. The 
+branch and bound algorithm performed exactly the same as the ILP algorithm up to instance size of 64. With larger
+instances, the ILP algorithm perfomed marginally better, but by fractions of a percentage point.
+In our branch and bound algorithm, we always expand the subproblem with the largest optimistic bound, and fathom the
+subproblem if the bound is less than the best solution already found, if all objects have been decided as included or
+excluded, and if the cost exceeds the cost limit, making the solution infeasible.

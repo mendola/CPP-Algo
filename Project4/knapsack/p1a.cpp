@@ -16,7 +16,14 @@ using namespace std;
 #include "knapsack.h"
 
 bool operator>(const knapsack& lhs, const knapsack& rhs){
-    return lhs.bound > rhs.bound;
+    return lhs.bound < rhs.bound;
+}
+
+void printPartialKnapsack(knapsack &k){
+    for(int i = 0; i< k.depth; i++){
+        cout<<k.isSelected(i)<<" ";
+    }
+    cout<<endl;
 }
 
 void branchAndBound(knapsack &k, int t){
@@ -38,6 +45,8 @@ void branchAndBound(knapsack &k, int t){
         knapsack currKnapsack = knapsackQueue.top();
         knapsackQueue.pop();
 
+        //cout<<"Processing. Bound = "<<currKnapsack.bound<< "  Value = " << currKnapsack.getValue()<<"  ";
+        //printPartialKnapsack(currKnapsack);
         // Do not continue to branch on this knapsack if its optimistic bound is worse
         // than the current
         if(currKnapsack.bound <= bestKnapsackValue){
