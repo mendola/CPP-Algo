@@ -1,0 +1,34 @@
+Problem 1 - Knapsack:
+
+TABULATED RESULTS FOR TOTAL VALUE:   (* = algorithm timed out before testing all combinations)
+#items    Exhaustive          Greedy      ILP         B&B      Greedy + LocalSearch
+8         2192                1986        2192        2192     2192
+12        2978                2978        2978        2978     2978
+16        4939                4576        4939        4939     4934
+20        6258                6125        6258        6258     6217
+28        9284                8897        9284        9284     9277
+32        9869*               9678        10169       10169    10136
+48        13117*              14141       14519       14519    14511
+64        17674*              19640       20074       20074    20053
+128       28970*              40321       40718       40639    40714
+256       28970*              80043       80605       80215    80599
+512       311203*             1681065     1687950     1681853  1687907
+1024      315056*             3299177     3302540     3299578  3302523
+
+Our results for a Greedy Knapsack followed by a round of LocalSearch produced results that
+were within a significantly tighter bound of the optimal ILP result than the Greedy result
+alone. On some problems this allowed us to entirely reach the optimal result, while on others
+we saw a reduction of error by a factor of approximately x1000 (1024 knapsack). The neighborhood
+function was similar to a two-opt neighborhood, but due to the nature of Knapsack instead of
+swapping pairs of items we iterated through each selected item in the solution, unselecting
+one at a time and and greedily solving the residual knapsack problem exluding that element.
+
+Experimentally, this local search only applies itself for one iteration and cannot get out of the
+local maxima it encounters there. It makes some intuitive sense that there is some near optimal
+solution where there is some 'nook' that's not being efficently packed in the solution, but cannot
+be filled by simply removing one element.
+
+A more complicated n-opt neighborhood would run in n! time, but possibly produce a more optimal
+(or the optimal) solution. Perhaps stepping up to a higher n once a plateou is reached would be
+the most effective approach. however, these results are so good as-is that it'd be moot to do it
+for the basic LocalSearch algorithm.

@@ -1,0 +1,64 @@
+knapsack1024.output
+knapsack128.output
+knapsack12.output
+knapsack16.output
+knapsack20.output
+knapsack256.output
+knapsack28.output
+knapsack32.output
+knapsack48.output
+knapsack512.output
+knapsack64.output
+knapsack8.output
+output/knapsack1024.output
+Increasing Value from 3299177 to 3302523
+Neighborhood search generated value 3302507 which is less than 3302523
+------------------------------------------------
+output/knapsack128.output
+Increasing Value from 40321 to 40714
+Neighborhood search generated value 40708 which is less than 40714
+------------------------------------------------
+output/knapsack12.output
+Neighborhood search generated value 2877 which is less than 2978
+------------------------------------------------
+Total value: 2978
+output/knapsack16.output
+Increasing Value from 4576 to 4934
+Neighborhood search generated value 4914 which is less than 4934
+------------------------------------------------
+output/knapsack20.output
+Increasing Value from 6125 to 6217
+Neighborhood search generated value 6140 which is less than 6217
+------------------------------------------------
+output/knapsack256.output
+Increasing Value from 80043 to 80599
+Neighborhood search generated value 80596 which is less than 80599
+------------------------------------------------
+output/knapsack28.output
+Increasing Value from 8897 to 9277
+Neighborhood search generated value 9255 which is less than 9277
+------------------------------------------------
+output/knapsack32.output
+Increasing Value from 9678 to 10136
+Neighborhood search generated value 10092 which is less than 10136
+------------------------------------------------
+output/knapsack48.output
+Increasing Value from 14141 to 14511
+Neighborhood search generated value 14491 which is less than 14511
+------------------------------------------------
+output/knapsack512.output
+Increasing Value from 1681065 to 1687907
+Neighborhood search generated value 1687901 which is less than 1687907
+------------------------------------------------
+output/knapsack64.output
+Increasing Value from 19640 to 20053
+Neighborhood search generated value 20033 which is less than 20053
+------------------------------------------------
+output/knapsack8.output
+Increasing Value from 1986 to 2192
+Neighborhood search generated value 2091 which is less than 2192
+------------------------------------------------
+output/record
+knapsack1024.output
+knapsack128.output
+knapsack12.output
