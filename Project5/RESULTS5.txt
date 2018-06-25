@@ -1,0 +1,65 @@
+Problem 1 - Knapsack:
+
+
+TABULATED RESULTS FOR TOTAL VALUE:   (* = algorithm timed out before testing all combinations)
+#items    Exhaustive          Greedy      ILP         B&B      Greedy + LocalSearch  Genetic
+8         2192                1986        2192        2192     2192                  2192    
+12        2978                2978        2978        2978     2978                  2978
+16        4939                4576        4939        4939     4934                  4838
+20        6258                6125        6258        6258     6217                  6079
+28        9284                8897        9284        9284     9277                  9195
+32        9869*               9678        10169       10169    10136                 10037
+48        13117*              14141       14519       14519    14511                 14507
+64        17674*              19640       20074       20074    20053                 20058
+128       28970*              40321       40718       40639    40714                 40610
+256       28970*              80043       80605       80215    80599                 79693
+512       311203*             1681065     1687950     1681853  1687907               1635269
+1024      315056*             3299177     3302540     3299578  3302523               3142254
+
+Our results for a Greedy Knapsack followed by a round of LocalSearch produced results that
+were within a significantly tighter bound of the optimal ILP result than the Greedy result
+alone. On some problems this allowed us to entirely reach the optimal result, while on others
+we saw a reduction of error by a factor of approximately x1000 (1024 knapsack). The neighborhood
+function was similar to a two-opt neighborhood, but due to the nature of Knapsack instead of
+swapping pairs of items we iterated through each selected item in the solution, unselecting
+one at a time and and greedily solving the residual knapsack problem exluding that element.
+
+Experimentally, this local search only applies itself for one iteration and cannot get out of the
+local maxima it encounters there. It makes some intuitive sense that there is some near optimal
+solution where there is some 'nook' that's not being efficently packed in the solution, but cannot
+be filled by simply removing one element.
+
+A more complicated n-opt neighborhood would run in n! time, but possibly produce a more optimal
+(or the optimal) solution. Perhaps stepping up to a higher n once a plateou is reached would be
+the most effective approach. however, these results are so good as-is that it'd be moot to do it
+for the basic LocalSearch algorithm.
+
+Our Genetic algorithm for knapsack starts with an initial population of random solutions, then iteratively
+adds to the population by mutation and breeding. At the end of each iteration, survivors are chosen probabilistically
+with higher likelyhood of survival for fitter solutions. Fitness is defined as the value of the knapsack minus a penalty 
+proportional to the cost overrun. We also have a population cap to prevent memory use from exploding. Our results for this 
+algorithm are generally worse than for Greedy, ILP, and B&B, but it outperforms an exhaustive search for large instances.
+If we had time, we would tune the algorithm parameters such as initial population, population cap, mutation rate, and 
+breed rate.
+
+
+Problem 2: Coloring
+# Coloring Results
+#vertices-color exhaustive greedy     ILP   Steepest Descent
+12-3            1          1          1     1
+12-4            0          0          0     0
+24-4            4          1          1     1
+24-5            4          0          0     0
+48-5            27         4          1     1
+48-6            33         0          0     0
+96-6            109        5          1     2
+96-7            71         0          0     0
+192-6           382        34         4     7
+192-7           332        5          1     1
+192-8           274        0          0     0
+
+Results for Steepest Descent
+Our steepest descent local search starts with an initial solution found with our greedy algorthm.
+Then, it iteratively changes the color of one node at a time, selecting the node and new color that
+creates the greatest decrease in conflicts. The steepest descent algorithm never beats ILP, but it 
+matches it in most instances.

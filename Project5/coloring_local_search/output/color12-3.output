@@ -1,0 +1,33 @@
+
+
+Initial solution: 
+Number of Conflicts: 1
+Node 0 color: 1
+Node 1 color: 0
+Node 2 color: 1
+Node 3 color: 2
+Node 4 color: 1
+Node 5 color: 0
+Node 6 color: 2
+Node 7 color: 1
+Node 8 color: 2
+Node 9 color: 1
+Node 10 color: 0
+Node 11 color: 0
+Steepest Descent completed in 1 iterations
+Found an optimal solution
+
+Local Search Solution: 
+Number of Conflicts: 1
+Node 0 color: 1
+Node 1 color: 0
+Node 2 color: 1
+Node 3 color: 2
+Node 4 color: 1
+Node 5 color: 0
+Node 6 color: 2
+Node 7 color: 1
+Node 8 color: 2
+Node 9 color: 1
+Node 10 color: 0
+Node 11 color: 0
